@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlops-assignment-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mlops-assignment-app
+  template:
+    metadata:
+      labels:
+        app: mlops-assignment-app
+    spec:
+      containers:
+      - name: mlops-assignment-fastapi
+        image: us-central1-docker.pkg.dev/arcane-rigging-461217-m1/mlops-assignment-artifacts/cfh:latest
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "768Mi"
+            cpu: "300m"
+        livenessProbe:
+          httpGet:
+            path: /live_check
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready_check
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
