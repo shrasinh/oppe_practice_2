@@ -1,3 +1,3 @@
 wrk.method = "POST"
-wrk.body   = '{"sepal_length": 5.1, "sepal_width": 3.5, "petal_length": 1.4, "petal_width": 0.2}'
+wrk.body = '{"longitude": -121.89, "latitude": 37.34, "housing_median_age": 29.0, "total_bedrooms": 150.0, "population": 400.0, "households": 140.0, "median_income": 6.1234, "median_house_value": 300500.0, "ocean_proximity": "INLAND", "total_rooms": 850.0}'
 wrk.headers["Content-Type"] = "application/json"
